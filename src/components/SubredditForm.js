@@ -4,10 +4,13 @@ import PropTypes from 'prop-types';
 import { fetchPosts } from "../actions";
 
 const SubredditForm = ({ onSubredditFormSubmit }) => (
-	<form id="subredditForm" onSubmit={onSubredditFormSubmit}>
-		<input type="text" id="subreddit" name="subreddit" />
-		<button type="submit">Submit</button>
-	</form>
+	<div id="subredditFormContainer">
+		<form id="subredditForm" onSubmit={onSubredditFormSubmit}>
+			<label htmlFor="subreddit">Enter Subreddit:</label><br />
+			<input type="text" id="subreddit" name="subreddit" />
+			<button type="submit">Submit</button>
+		</form>
+	</div>
 );
 
 function mapDispatchToProps(dispatch) {
