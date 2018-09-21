@@ -3,10 +3,10 @@ import List from './List';
 import SubredditForm from './SubredditForm';
 import { connect } from 'react-redux';
 
-let App = ({ posts, onSubredditFormSubmit }) => {
+let App = ({ posts }) => {
 	return (
 		<div>
-			<SubredditForm onSubredditFormSubmit={onSubredditFormSubmit} />
+			<SubredditForm  />
 			<div className="list-container">
 				{
 					Object.keys(posts).map((category) => {
@@ -35,6 +35,8 @@ function mapStateToProps(state) {
 		posts: splitIntoCategories(state.posts),
 	};
 }
+
+
 
 export default connect(
 	mapStateToProps

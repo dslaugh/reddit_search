@@ -1,14 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const ListItem = ({ post }) => (
+const ListItem = ({ url, title }) => (
 	<div className="list-item">
 		<div className="go-btn-container">
-			<a href={post.url} target="_blank" >Go</a>
+			<a href={url} target="_blank" >Go</a>
 		</div>
 		<div className="list-item-title">
-			{ post.title }
+			{ title }
 		</div>
 	</div>
 );
+
+ListItem.propTypes = {
+	url: PropTypes.string,
+	title: PropTypes.string,
+};
 
 export default ListItem;

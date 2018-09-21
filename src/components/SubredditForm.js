@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { fetchPosts } from "../actions";
 
 const SubredditForm = ({ onSubredditFormSubmit }) => (
@@ -21,5 +22,9 @@ function mapDispatchToProps(dispatch) {
 		}
 	};
 }
+
+SubredditForm.propTypes = {
+	onSubredditFormSubmit: PropTypes.func.isRequired,
+};
 
 export default connect(null, mapDispatchToProps)(SubredditForm);
