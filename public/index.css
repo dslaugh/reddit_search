@@ -28,12 +28,12 @@
 
 .list-item-title {
 	width: 350px;
+	padding: 0 10px;
 }
 
 .go-btn-container {
 	width: 60px;
 	border-right: 1px solid #000;
-	margin-right: 10px;
 }
 
 .go-btn-container a {
@@ -62,4 +62,5 @@
 	padding: 5px 10px;
 	background-color: crimson;
 	color: white;
+	display: inline-block;
 }

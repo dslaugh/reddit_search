@@ -6,8 +6,7 @@ import { fetchPosts } from "../actions";
 const SubredditForm = ({ onSubredditFormSubmit }) => (
 	<div id="subredditFormContainer">
 		<form id="subredditForm" onSubmit={onSubredditFormSubmit}>
-			<label htmlFor="subreddit">Enter Subreddit:</label><br />
-			<input type="text" id="subreddit" name="subreddit" />
+			<input type="text" id="subreddit" name="subreddit" placeholder="Enter subreddit" />
 			<button type="submit">Submit</button>
 		</form>
 	</div>
