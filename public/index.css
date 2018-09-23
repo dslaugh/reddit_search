@@ -18,11 +18,12 @@
 	margin: 0;
 	padding: 10px;
 	text-align: center;
+	border-bottom: 3px solid #000;
 }
 
 .list-item {
 	padding: 8px 5px;
-	border-top: 3px solid #000;
+	border-bottom: 1px solid #000;
 	display: flex;
 }
 
