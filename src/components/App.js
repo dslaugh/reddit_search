@@ -18,19 +18,37 @@ let App = ({ posts }) => {
 	);
 };
 
-function mapStateToProps(state) {
-	function splitIntoCategories(posts) {
-		return posts.reduce((prev, curr) => {
-			const matches = /\[(.*?)\]/.exec(curr.title);
-			const category = matches ? matches[1].toUpperCase() : 'NONE';
-			if (!prev[category]) {
-				prev[category] = [];
-			}
-			prev[category].push(curr);
-			return prev;
-		}, {});
-	}
+function splitIntoCategories(posts) {
+	const dups = {
+		'ACC': 'ACCESSORIES',
+		'PISTOL': 'HANDGUNS',
+		'HANDGUN': 'HANDGUNS',
+		'MAGAZINE': 'MAGAZINES',
+		'OPTIC': 'OPTICS',
+	};
 
+	return posts.reduce((prev, curr) => {
+		const matches = /\[(.*?)\]/.exec(curr.title);
+		if (matches) {
+			curr.title = curr.title.split(matches[0])[1].trim();
+		}
+
+		let category = matches ? matches[1].toUpperCase() : 'NONE';
+
+		if (dups[category]) {
+			category = dups[category];
+		}
+
+		if (!prev[category]) {
+			prev[category] = [];
+		}
+
+		prev[category].push(curr);
+		return prev;
+	}, {});
+}
+
+function mapStateToProps(state) {
 	return {
 		posts: splitIntoCategories(state.posts),
 	};
