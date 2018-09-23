@@ -3,30 +3,30 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchPosts } from "../actions";
 
-const SubredditForm = ({ onSubredditFormSubmit }) => (
-	<div id="subredditFormContainer">
-		<form id="subredditForm" onSubmit={onSubredditFormSubmit}>
-			<input type="text" id="subreddit" name="subreddit" placeholder="Enter subreddit" />
-			<button type="submit">Submit</button>
-		</form>
-	</div>
-);
+const SubredditForm = ({ dispatch }) => {
+	let textInput = React.createRef();
 
-function mapDispatchToProps(dispatch) {
-	return {
-		onSubredditFormSubmit: (e) => {
-			e.preventDefault();
-			let inputValue = document.querySelector('#subreddit').value.trim();
-			if (inputValue === '') {
-				return;
-			}
-			dispatch(fetchPosts(inputValue));
+	function handleFormSubmit(e) {
+		e.preventDefault();
+		let inputValue = textInput.current.value.trim();
+		if (inputValue === '') {
+			return;
 		}
-	};
-}
+		dispatch(fetchPosts(inputValue));
+	}
 
-SubredditForm.propTypes = {
-	onSubredditFormSubmit: PropTypes.func.isRequired,
+	return (
+		<div id="subredditFormContainer">
+			<form id="subredditForm" onSubmit={handleFormSubmit}>
+				<input type="text" ref={textInput} placeholder="Enter subreddit" />
+				<button type="submit">Submit</button>
+			</form>
+		</div>
+	);
 };
 
-export default connect(null, mapDispatchToProps)(SubredditForm);
+SubredditForm.propTypes = {
+	dispatch: PropTypes.func.isRequired,
+};
+
+export default connect()(SubredditForm);
