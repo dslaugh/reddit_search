@@ -1,6 +1,6 @@
 import React from 'react';
-import List from './List';
 import SubredditForm from './SubredditForm';
+import List from './List';
 import { connect } from 'react-redux';
 
 let App = ({ posts }) => {
@@ -21,6 +21,7 @@ let App = ({ posts }) => {
 function splitIntoCategories(posts) {
 	const dups = {
 		'ACC': 'ACCESSORIES',
+		'ACCESSORY': 'ACCESSORIES',
 		'PISTOL': 'HANDGUNS',
 		'HANDGUN': 'HANDGUNS',
 		'MAGAZINE': 'MAGAZINES',

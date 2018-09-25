@@ -2,24 +2,36 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchPosts } from "../actions";
+import constants from '../constants';
 
 const SubredditForm = ({ dispatch }) => {
-	let textInput = React.createRef();
+	let subredditInput = React.createRef();
+	let numPostsInput = React.createRef();
 
 	function handleFormSubmit(e) {
 		e.preventDefault();
-		let inputValue = textInput.current.value.trim();
-		if (inputValue === '') {
+		let subredditValue = subredditInput.current.value.trim();
+		if (subredditValue === '') {
 			return;
 		}
-		dispatch(fetchPosts(inputValue));
+		let numPostsValue = parseInt(numPostsInput.current.value.trim(), 10) || constants.DEFAULT_NUM_POSTS;
+		dispatch(fetchPosts(subredditValue, numPostsValue));
 	}
 
 	return (
 		<div id="subredditFormContainer">
 			<form id="subredditForm" onSubmit={handleFormSubmit}>
-				<input type="text" ref={textInput} placeholder="Enter subreddit" />
-				<button type="submit">Submit</button>
+				<div>
+					<label htmlFor='subreddit_input'>Subreddit:</label>
+					<input type="text" id="subreddit_input" ref={subredditInput} placeholder="Enter subreddit..." />
+				</div>
+				<div>
+					<label htmlFor='num_posts_input'>Number of Posts:</label>
+					<input type="text" id="num_posts_input" size="2" ref={numPostsInput} /> (Default is {constants.DEFAULT_NUM_POSTS})
+				</div>
+				<div>
+					<button type="submit">Submit</button>
+				</div>
 			</form>
 		</div>
 	);

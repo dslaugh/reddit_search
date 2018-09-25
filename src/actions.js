@@ -23,10 +23,11 @@ function getUrl(subreddit, limit=50) {
 	return `https://www.reddit.com/r/${subreddit}.json?limit=${limit}`;
 }
 
-export function fetchPosts(subreddit) {
+export function fetchPosts(subreddit, limit=50) {
 	return (dispatch) => {
 		dispatch(requestPosts(subreddit));
-		return fetch(getUrl(subreddit))
+
+		return fetch(getUrl(subreddit, limit))
 			.then((response) => {
 				if (response.status === 200) {
 					return response.json()
