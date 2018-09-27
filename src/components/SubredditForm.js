@@ -27,7 +27,7 @@ const SubredditForm = ({ dispatch }) => {
 				</div>
 				<div>
 					<label htmlFor='num_posts_input'>Number of Posts:</label>
-					<input type="text" id="num_posts_input" size="2" ref={numPostsInput} /> (Default is {constants.DEFAULT_NUM_POSTS})
+					<input type="text" id="num_posts_input" size="2" defaultValue="50" ref={numPostsInput} />
 				</div>
 				<div>
 					<button type="submit">Submit</button>

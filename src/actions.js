@@ -1,6 +1,7 @@
 export const ACTIONS = {
 	REQUEST_POSTS: 'REQUEST_POSTS',
 	RECEIVE_POSTS: 'RECEIVE_POSTS',
+	FETCH_POSTS_FAILED: 'FETCH_POSTS_FAILED',
 };
 
 export function requestPosts(subreddit) {
@@ -19,6 +20,12 @@ export function receivePosts(subreddit, json) {
 	};
 }
 
+export function fetchPostsFailed() {
+	return {
+		type: ACTIONS.FETCH_POSTS_FAILED
+	};
+}
+
 function getUrl(subreddit, limit=50) {
 	return `https://www.reddit.com/r/${subreddit}.json?limit=${limit}`;
 }
@@ -32,13 +39,11 @@ export function fetchPosts(subreddit, limit=50) {
 				if (response.status === 200) {
 					return response.json()
 				}
-				throw new Error('There was an error from fetching posts');
+				dispatch(fetchPostsFailed());
+				throw new Error('There was an error fetching posts');
 			})
 			.then((json) => {
 				dispatch(receivePosts(subreddit, json));
-			})
-			.catch((err) => {
-				console.error('There was an error', err);
 			});
 	}
 }

@@ -13,6 +13,10 @@ export function rootReducer(state = { posts: [], subreddit: '', isFetching: fals
 				subreddit: action.subreddit,
 				isFetching: false,
 			});
+		case ACTIONS.FETCH_POSTS_FAILED:
+			return Object.assign({}, state, {
+				isFetching: false,
+			});
 		default:
 			return state;
 	}
